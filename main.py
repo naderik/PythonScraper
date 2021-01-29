@@ -18,9 +18,11 @@ if __name__ == '__main__':
     #print(jobs)
     for job in jobs:
         title = job.find('h2', class_='title')
-        company = job.find('div', class_='company')
+        company = job.find('span', class_='company')
         location = job.find('div', class_='location accessible-contrast-color-location')
-        print(title)
-        print(company)
-        print(location)
+        if None in (title, company, location):
+            continue
+        print(title.text.strip())
+        print(company.text.strip())
+        print(location.text.strip())
 
