@@ -1,13 +1,26 @@
 from bs4 import BeautifulSoup
 import requests
 
-search = input("Enter search term: ")
-params = {"q": search}
-r = requests.get("https://google.com", params=params)
+#search = input("Enter your job description: ")
+#params = {"q": search}
 
-soup = BeautifulSoup(r.text, "html.parser")
+URL = "https://ca.indeed.com/jobs?q=full+stack+developer&l=Canada"
+r = requests.get(URL)
+soup = BeautifulSoup(r.content, "html.parser")
+results = soup.find(id='resultsCol')
+jobs = results.find_all('div', class_="jobsearch-SerpJobCard unifiedRow row result clickcard")
+
+for job in jobs:
+    print(job, end='\n'*2)
+
 
 if __name__ == '__main__':
     print('Web Scraping Started')
-    print(soup.prettify())
 
+    # for item in links:
+    # item.text = item.find("a").text
+    # item.href = item.find("a").attrs["href"]
+
+    # if item.text and item.href:
+    #  print(item.text)
+    #  print(item.href)
