@@ -13,9 +13,8 @@ jobs = results.findAll("div", class_="jobsearch-SerpJobCard unifiedRow row resul
 
 if __name__ == '__main__':
 
-    print('Web Scraping Started')
-    #print(results)
-    #print(jobs)
+    print('Web Scraping Started\n')
+
     for job in jobs:
         title = job.find('h2', class_='title')
         company = job.find('span', class_='company')
@@ -25,4 +24,5 @@ if __name__ == '__main__':
         print(title.text.strip())
         print(company.text.strip())
         print(location.text.strip())
+        print()
 
